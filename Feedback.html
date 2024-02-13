@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating</title>
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+         }
+
+         body
+         {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(45deg, red, blue );  
+         }
+         
+         .rating_heading
+         {
+            color: black;
+            animation: scale-up 1s ease;
+         }
+
+         @keyframes scale-up
+         {
+            0%
+            {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100%
+            {
+                opacity: 1;
+                transform: scale(1);
+            }
+         }
+
+         .star_rating
+         {
+            user-select: none;
+            background-color: black;
+            color: #ff5e00;
+            padding: 1.4rem, 2.5rem;
+            margin: 2rem;
+            border-radius: 0.4rem;
+            text-align: center;
+            animation: scale-up 1s ease;
+         }
+
+         @keyframes slide-up
+         {
+            0%
+            {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100%
+            {
+                opacity: 1;
+                transform: scale(0px);
+            }
+         }
+
+         .star
+         {
+            font-size: 3rem;
+            color: #ff9800;
+            background-color: unset;
+            border: none;
+         }
+
+         .star:hover
+         {
+            cursor: pointer;
+         }
+
+    </style>
+</head>
+<body>
+
+    <h1 class="rating_heading">5 Star Rating</h1>
+    
+    <div class="star_rating">
+        <p>How Was Your Experience?</p>
+        <button class="star">&#9734;</button>
+        <button class="star">&#9734;</button>
+        <button class="star">&#9734;</button>
+        <button class="star">&#9734;</button>
+        <button class="star">&#9734;</button>
+        <p class="current_rating">0 of 5</p>
+    </div>
+    
+    <script>
+        const allstar = document.querySelectorAll('.star');
+        let current_rating = document.querySelector('.current_rating');
+        allstar.forEach((star,i)=>
+        {
+            star.onclick = function()
+            {
+                console.log(star);
+                let current_star_level=i + 1;
+                current_rating.innerText = `${current_star_level} of 5`;
+                console.log(current_star_level);
+                allstar.forEach((star,j)=>
+                {
+                    if( current_star_level >= j+1)
+                    {
+                        star.innerHTML = '&#9733';
+                    }
+                    else{
+                        star.innerHTML = '&#9734';
+                    }
+                })
+            }
+        })
+    </script>
+
+</body>
+</html>
